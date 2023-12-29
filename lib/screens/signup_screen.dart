@@ -42,12 +42,11 @@ class SignUpScreen extends StatelessWidget {
                     uid: AppRepo().uid,
                     userName: userNameController.text,
                   )));
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => BnbScreen(
-                            selectedIndex: 0,
-                          )));
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                    builder: (_) => BnbScreen(selectedIndex:0)),
+                    (route) => false,
+              );
             }
             if (state is SignInFailState) {
               ScaffoldMessenger.of(context)

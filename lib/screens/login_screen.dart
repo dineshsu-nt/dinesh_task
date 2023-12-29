@@ -48,12 +48,10 @@ class LoginScreen extends StatelessWidget {
               body: BlocConsumer<SignInEmailBloc, SignInEmailState>(
                 listener: (context, state) {
                   if (state is SignInSuccessState) {
-                    Navigator.pushReplacement(
-                      context,
+                    Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                          builder: (context) => BnbScreen(
-                                selectedIndex: 0,
-                              )),
+                          builder: (_) => BnbScreen(selectedIndex: 0,)),
+                          (route) => false,
                     );
                   } else if (state is SignInFailState) {
                     ScaffoldMessenger.of(context).showSnackBar(
